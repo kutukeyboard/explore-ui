@@ -1,0 +1,41 @@
+@mixin cardBase($border: false, $shadow: false, $rounded: 2px) {
+  @if $border {
+    border: solid 1px rgba(153, 153, 153, 0.445);
+  }
+  @if $rounded {
+    border-radius: $rounded;
+  }
+  @if $shadow {
+    box-shadow: 3px 3px 5px rgba(153, 153, 153, 0.445);
+  }
+}
+
+.card {
+  @include cardBase();
+  & > img {
+    width: 100%;
+  }
+  &.bordered {
+    @include cardBase($border: true);
+  }
+  &.shadow {
+    @include cardBase($shadow: true);
+  }
+  &.rounded {
+    @include cardBase($rounded: var(--rounded));
+    & > img {
+      border-radius: var(--rounded) var(--rounded) 0px 0px;
+    }
+  }
+  &-body {
+    padding: 0 15px;
+  }
+  & .title {
+    display: block;
+    color: "#666";
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: center;
+  }
+}

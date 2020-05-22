@@ -1,0 +1,21 @@
+@mixin gridBase($gap: 0) {
+  display: grid;
+  align-items: stretch;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+.grid {
+  @include gridBase();
+
+  &.col {
+    grid-template-columns: repeat(auto-fit, minmax(var(--colWidth), 1fr));
+  }
+  &.row {
+    grid-template-rows: repeat(auto-fit, 1fr);
+  }
+  &[class*="gap-"] {
+    color: rgb(148, 32, 32);
+  }
+}

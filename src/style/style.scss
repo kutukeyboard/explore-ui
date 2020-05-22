@@ -1,0 +1,14 @@
+@import "./grid";
+@import "./navbar";
+@import "./card";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 0px 20px;
+}
