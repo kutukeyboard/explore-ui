@@ -23,6 +23,9 @@
     "url": "https://github.com/kutukeyboard/explore-ui/issues"
   },
   "homepage": "https://github.com/kutukeyboard/explore-ui#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
     "@babel/preset-react": "^7.9.4",
     "babel-core": "^6.21.0",

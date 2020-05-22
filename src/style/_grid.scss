@@ -15,7 +15,4 @@
   &.row {
     grid-template-rows: repeat(auto-fit, 1fr);
   }
-  &[class*="gap-"] {
-    color: rgb(148, 32, 32);
-  }
 }

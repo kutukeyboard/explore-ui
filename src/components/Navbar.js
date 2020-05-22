@@ -14,6 +14,13 @@ const Nanvbar = (props) => {
 
   const getClass = () => {
     let myClass = "nav";
+    if (props.shadow) {
+      myClass += " shadow";
+    }
+
+    if (props.border) {
+      myClass += " bordered";
+    }
 
     // if (props.justifyContent) {
     //   myStyle["--justifyContent"] = props.justifyContent;

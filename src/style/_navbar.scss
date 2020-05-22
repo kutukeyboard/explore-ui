@@ -1,8 +1,15 @@
+@import "./theme";
+
 .nav {
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
-  box-shadow: 3px 3px 3px rgba(153, 153, 153, 0.171);
+  &.shadow {
+    box-shadow: 1px 1px 5px $border-shadow;
+  }
+  &.bordered {
+    border-bottom: solid 1px $border-shadow;
+  }
 
   & .brand {
     display: flex;
@@ -26,7 +33,7 @@
       font-size: 14px;
       padding: 15px;
       text-decoration: none;
-      color: #333;
+      color: $gray-dark;
       white-space: nowrap;
     }
   }
@@ -34,7 +41,7 @@
   & > .nav-main {
     margin-right: 20px;
     align-items: center;
-    background-color: #fff;
+    background-color: $white;
     & > li {
       float: left;
     }
@@ -44,7 +51,7 @@
   .nav-item-sub-x {
     & > ul {
       display: none;
-      background-color: #fff;
+      background-color: $white;
     }
     &:hover {
       & > ul {
@@ -74,19 +81,21 @@
     right: 20px;
     width: 20px;
     height: 0.15em;
-    background: #333;
-    box-shadow: 0 0.25em 0 0 #333, 0 0.5em 0 0 #333;
+    background: $gray-dark;
+    box-shadow: 0 0.25em 0 0 $gray-dark, 0 0.5em 0 0 $gray-dark;
   }
 }
 
-@media only screen and (min-width: 600px) {
-  li:hover {
-    background-color: rgba(77, 180, 206, 0.712);
+@media only screen and (min-width: 720px) {
+  li:hover & > * {
+    color: $blue;
   }
   .nav-item-sub:hover {
     & > ul {
       margin-left: -15px;
       top: 48px;
+      border: solid 0.5px $border-shadow;
+      border-radius: 5px;
     }
     &:last-child > ul {
       right: 20px;
@@ -94,14 +103,14 @@
   }
 
   .nav-item-sub-x:hover > ul {
-    // display: block;
     right: 100%;
-    // margin-left: 100%;
     margin-top: -34px;
+    border: solid 0.5px $border-shadow;
+    border-radius: 5px;
   }
 }
 
-@media only screen and (max-width: 599px) {
+@media only screen and (max-width: 719px) {
   .nav {
     & > ul.nav-main {
       display: none;
@@ -115,7 +124,8 @@
         }
       }
     }
-    & .nav-item-sub {
+    & .nav-item-sub,
+    .nav-item-sub-x {
       & > ul {
         position: relative;
         right: 0px;
@@ -124,6 +134,9 @@
           margin-left: 10px;
         }
       }
+    }
+    & .navLink.vm {
+      color: $blue;
     }
   }
 
