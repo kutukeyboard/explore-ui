@@ -64,3 +64,16 @@ $theme-info: (
   "link": lighten($info, 20),
   "link-hover": lighten($info, 35),
 );
+
+$theme-warning: (
+  "background": lighten($warning, 40),
+  "text": $warning,
+  "link": lighten($warning, 20),
+  "link-hover": lighten($warning, 35),
+);
+$theme-danger: (
+  "background": lighten($warning, 40),
+  "text": $warning,
+  "link": lighten($warning, 20),
+  "link-hover": lighten($warning, 35),
+);
