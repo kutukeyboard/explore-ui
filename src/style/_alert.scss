@@ -1,0 +1,52 @@
+@import "./theme";
+
+@mixin alertTheme($theme) {
+  background-color: map-get($theme, "background");
+  border: solid 0.5px map-get($theme, "border");
+  border-radius: 2px;
+  & > * {
+    color: map-get($theme, "text");
+  }
+  & a {
+    text-decoration: none;
+    color: map-get($theme, "link");
+    &:hover {
+      color: map-get($theme, "link-hover");
+    }
+  }
+}
+
+.alert {
+  &.default {
+    @include alertTheme($theme-default);
+  }
+
+  &.primary {
+    @include alertTheme($theme-primary);
+  }
+  &.secondary {
+    @include alertTheme($theme-secondary);
+  }
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  &.small > * {
+    font-size: 12px;
+  }
+  &.medium > * {
+    font-size: 16px;
+  }
+  &.large > * {
+    font-size: 20px;
+  }
+  & .closeBtn {
+    font-weight: 500;
+    font-size: 12px;
+    margin: auto 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}

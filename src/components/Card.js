@@ -3,7 +3,7 @@ import React from "react";
 const Card = (props) => {
   let myStyle = {};
 
-  const cardClass = () => {
+  const getClass = () => {
     let myClass = "card";
 
     if (props.border) {
@@ -21,7 +21,7 @@ const Card = (props) => {
   };
 
   return (
-    <div className={cardClass()} style={myStyle}>
+    <div className={getClass()} style={myStyle}>
       {props.image && <img src={props.image} />}
       <div className="title">{props.title}</div>
       <div className="card-body">{props.children}</div>

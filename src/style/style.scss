@@ -2,6 +2,7 @@
 @import "./navbar";
 @import "./card";
 @import "./theme";
+@import "./alert";
 
 body {
   margin: 0;
@@ -11,5 +12,5 @@ body {
 }
 
 .container {
-  padding: 0px 20px;
+  padding: 0px 20px 10px 20px;
 }

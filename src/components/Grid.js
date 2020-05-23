@@ -5,7 +5,7 @@ const Grid = (props) => {
   let myClass = "grid";
   let myStyle = {};
 
-  const gridClass = () => {
+  const getClass = () => {
     props.type == "column" ? (myClass += " col") : (myClass += " row");
 
     return myClass + " " + props.className;
@@ -21,7 +21,7 @@ const Grid = (props) => {
     myStyle["gap"] = props.gap;
   }
   return (
-    <div className={gridClass()} style={myStyle}>
+    <div className={getClass()} style={myStyle}>
       {props.children}
     </div>
   );
