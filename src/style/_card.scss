@@ -1,42 +1,91 @@
-@import "./theme";
-@mixin cardBase($border: false, $shadow: false, $rounded: 2px) {
-  @if $border {
-    border: solid 1px $border-shadow;
-  }
-  @if $rounded {
-    border-radius: $rounded;
-  }
-  @if $shadow {
-    box-shadow: 3px 3px 5px $border-shadow;
-  }
-}
-
 .card {
-  @include cardBase();
   & > img {
     width: 100%;
   }
-  &.bordered {
-    @include cardBase($border: true);
-  }
-  &.shadow {
-    @include cardBase($shadow: true);
-  }
   &.rounded {
-    @include cardBase($rounded: var(--rounded));
+    border-radius: var(--rounded);
     & > img {
       border-radius: var(--rounded) var(--rounded) 0px 0px;
     }
   }
+  &.border {
+    &-default {
+      border: solid 1px map-get($theme-default, "border");
+    }
+    &-primary {
+      border: solid 1px map-get($theme-primary, "border");
+    }
+    &-secondary {
+      border: solid 1px map-get($theme-secondary, "border");
+    }
+    &-success {
+      border: solid 1px map-get($theme-success, "border");
+    }
+    &-info {
+      border: solid 1px map-get($theme-info, "border");
+    }
+    &-warning {
+      border: solid 1px map-get($theme-warning, "border");
+    }
+    &-danger {
+      border: solid 1px map-get($theme-danger, "border");
+    }
+  }
+
+  &.shadow {
+    &-default {
+      box-shadow: 3px 3px 5px map-get($theme-default, "border");
+    }
+    &-primary {
+      box-shadow: 3px 3px 5px map-get($theme-primary, "border");
+    }
+    &-secondary {
+      box-shadow: 3px 3px 5px map-get($theme-secondary, "border");
+    }
+    &-success {
+      box-shadow: 3px 3px 5px map-get($theme-success, "border");
+    }
+    &-info {
+      box-shadow: 3px 3px 5px map-get($theme-info, "border");
+    }
+    &-warning {
+      box-shadow: 3px 3px 5px map-get($theme-warning, "border");
+    }
+    &-danger {
+      box-shadow: 3px 3px 5px map-get($theme-danger, "border");
+    }
+  }
+
   &-body {
     padding: 0 15px;
   }
   & .title {
     display: block;
-    color: $gray;
     font-size: 20px;
     margin: 10px 0;
     font-weight: bold;
     text-align: center;
+
+    &-default {
+      color: $gray-dark;
+    }
+    &-primary {
+      color: $primary;
+    }
+    &-secondary {
+      color: $secondary;
+    }
+    &-success {
+      color: $success;
+    }
+    &-info {
+      color: $info;
+    }
+    &-warning {
+      color: $warning;
+    }
+    &-danger {
+      color: $danger;
+    }
   }
 }

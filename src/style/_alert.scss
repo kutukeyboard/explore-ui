@@ -1,9 +1,7 @@
-@import "./theme";
-
 @mixin alertTheme($theme) {
   background-color: map-get($theme, "background");
   border: solid 0.5px map-get($theme, "border");
-  border-radius: 2px;
+  border-radius: 5px;
   & > * {
     color: map-get($theme, "text");
   }
@@ -17,9 +15,7 @@
 }
 
 .alert {
-  &.default {
-    @include alertTheme($theme-default);
-  }
+  @include alertTheme($theme-default);
 
   &.primary {
     @include alertTheme($theme-primary);
@@ -27,23 +23,35 @@
   &.secondary {
     @include alertTheme($theme-secondary);
   }
+  &.success {
+    @include alertTheme($theme-success);
+  }
+  &.info {
+    @include alertTheme($theme-info);
+  }
+  &.warning {
+    @include alertTheme($theme-warning);
+  }
+  &.danger {
+    @include alertTheme($theme-danger);
+  }
   padding: 10px;
   margin: 5px;
   display: flex;
   justify-content: space-between;
 
   &.small > * {
-    font-size: 12px;
+    font-size: map-get($font-size, "small");
   }
   &.medium > * {
-    font-size: 16px;
+    font-size: map-get($font-size, "medium");
   }
   &.large > * {
-    font-size: 20px;
+    font-size: map-get($font-size, "large");
   }
   & .closeBtn {
     font-weight: 500;
-    font-size: 12px;
+    font-size: map-get($font-size, "small");
     margin: auto 5px;
     background-color: transparent;
     border: none;

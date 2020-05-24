@@ -1,0 +1,42 @@
+@mixin buttonTheme($theme) {
+  border: solid 1px map-get($theme, "border");
+  background-color: map-get($theme, "background");
+  color: map-get($theme, "text");
+}
+
+.btn {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  display: inline-block;
+  cursor: pointer;
+
+  @include buttonTheme($theme-default);
+  &.primary {
+    @include buttonTheme($theme-primary);
+  }
+  &.secondary {
+    @include buttonTheme($theme-secondary);
+  }
+  &.success {
+    @include buttonTheme($theme-success);
+  }
+  &.info {
+    @include buttonTheme($theme-info);
+  }
+  &.warning {
+    @include buttonTheme($theme-warning);
+  }
+  &.danger {
+    @include buttonTheme($theme-danger);
+  }
+  &.small * {
+    font-size: map-get($font-size, "small");
+  }
+  &.medium * {
+    font-size: map-get($font-size, "medium");
+  }
+  &.large * {
+    font-size: map-get($font-size, "large");
+  }
+}

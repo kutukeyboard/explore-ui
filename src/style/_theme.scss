@@ -17,7 +17,6 @@ $gray: #6c757d;
 $gray-dark: #333; //text color
 
 $primary: #007bff;
-
 $secondary: #6c757d;
 $success: #28a745;
 $info: #17a2b8;
@@ -33,47 +32,59 @@ $theme-default: (
   "text": $gray-dark,
   "link": $blue,
   "link-hover": $indigo,
-  "border": lighten($gray-dark, 35),
+  "border": lighten($gray-dark, 25),
 );
 
 $theme-primary: (
-  "background": lighten($primary, 40),
-  "text": $primary,
-  "link": darken($primary, 20),
+  "background": $primary,
+  "text": $white,
+  "link": lighten($primary, 40),
   "link-hover": lighten($primary, 20),
-  "border": lighten($primary, 35),
+  "border": lighten($primary, 25),
 );
 
 $theme-secondary: (
-  "background": lighten($secondary, 40),
-  "text": $secondary,
-  "link": lighten($secondary, 20),
-  "link-hover": lighten($secondary, 35),
+  "background": $secondary,
+  "text": $white,
+  "link": lighten($secondary, 40),
+  "link-hover": lighten($secondary, 20),
+  "border": lighten($secondary, 25),
 );
 
 $theme-success: (
-  "background": lighten($success, 40),
-  "text": $success,
-  "link": lighten($success, 20),
-  "link-hover": lighten($success, 35),
+  "background": $success,
+  "text": $white,
+  "link": lighten($success, 40),
+  "link-hover": lighten($success, 20),
+  "border": lighten($success, 25),
 );
 
 $theme-info: (
-  "background": lighten($info, 40),
-  "text": $info,
-  "link": lighten($info, 20),
-  "link-hover": lighten($info, 35),
+  "background": $info,
+  "text": $white,
+  "link": lighten($info, 40),
+  "link-hover": lighten($info, 20),
+  "border": lighten($info, 25),
 );
 
 $theme-warning: (
-  "background": lighten($warning, 40),
-  "text": $warning,
-  "link": lighten($warning, 20),
-  "link-hover": lighten($warning, 35),
+  "background": $warning,
+  "text": $white,
+  "link": lighten($warning, 40),
+  "link-hover": lighten($warning, 20),
+  "border": lighten($warning, 25),
 );
+
 $theme-danger: (
-  "background": lighten($warning, 40),
-  "text": $warning,
-  "link": lighten($warning, 20),
-  "link-hover": lighten($warning, 35),
+  "background": $danger,
+  "text": $white,
+  "link": lighten($danger, 40),
+  "link-hover": lighten($danger, 20),
+  "border": lighten($danger, 25),
+);
+
+$font-size: (
+  "small": 12px,
+  "medium": 16px,
+  "large": 20px,
 );

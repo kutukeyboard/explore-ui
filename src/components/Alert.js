@@ -20,8 +20,8 @@ const Alert = (props) => {
     if (props.size) {
       myClass += " " + props.size;
     }
-    if (props.color) {
-      myClass += " " + props.color;
+    if (props.theme) {
+      myClass += " " + props.theme;
     }
     if (props.className) {
       return myClass + " " + props.className;
