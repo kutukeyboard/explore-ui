@@ -1,14 +1,196 @@
 @import "./theme";
 
+@mixin navTheme($theme, $border: false, $shadow: false) {
+  background-color: map-get($theme, "background");
+  color: map-get($theme, "text");
+
+  @if $border {
+    border: solid 1px map-get($theme, "border");
+  }
+  @if $shadow {
+    box-shadow: 1px 1px 5px map-get($theme, "border");
+  }
+}
+
 .nav {
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
-  &.shadow {
-    box-shadow: 1px 1px 5px $border-shadow;
+
+  &.default {
+    &.bordered {
+      @include navTheme($theme: $theme-default, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-default, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-default, "background");
+      color: map-get($theme-default, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-default, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-default, "text"),
+        0px 0.5em 0px 0px map-get($theme-default, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-default, "background");
+    }
   }
-  &.bordered {
-    border-bottom: solid 1px $border-shadow;
+
+  &.dark {
+    &.bordered {
+      @include navTheme($theme: $theme-dark, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-dark, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-dark, "background");
+      color: map-get($theme-dark, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-dark, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-dark, "text"),
+        0px 0.5em 0px 0px map-get($theme-dark, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-dark, "background");
+    }
+  }
+
+  &.primary {
+    &.bordered {
+      @include navTheme($theme: $theme-primary, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-primary, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-primary, "background");
+      color: map-get($theme-primary, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-primary, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-primary, "text"),
+        0px 0.5em 0px 0px map-get($theme-primary, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-primary, "background");
+    }
+  }
+
+  &.secondary {
+    &.bordered {
+      @include navTheme($theme: $theme-secondary, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-secondary, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-secondary, "background");
+      color: map-get($theme-secondary, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-secondary, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-secondary, "text"),
+        0px 0.5em 0px 0px map-get($theme-secondary, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-secondary, "background");
+    }
+  }
+
+  &.success {
+    &.bordered {
+      @include navTheme($theme: $theme-success, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-success, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-success, "background");
+      color: map-get($theme-success, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-success, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-success, "text"),
+        0px 0.5em 0px 0px map-get($theme-success, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-success, "background");
+    }
+  }
+
+  &.info {
+    &.bordered {
+      @include navTheme($theme: $theme-info, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-info, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-info, "background");
+      color: map-get($theme-info, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-info, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-info, "text"),
+        0px 0.5em 0px 0px map-get($theme-info, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-info, "background");
+    }
+  }
+
+  &.warning {
+    &.bordered {
+      @include navTheme($theme: $theme-warning, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-warning, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-warning, "background");
+      color: map-get($theme-warning, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-warning, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-warning, "text"),
+        0px 0.5em 0px 0px map-get($theme-warning, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-warning, "background");
+    }
+  }
+
+  &.danger {
+    &.bordered {
+      @include navTheme($theme: $theme-danger, $border: true);
+    }
+    &.shadow {
+      @include navTheme($theme: $theme-danger, $shadow: true);
+    }
+    & .nav-item-sub > ul,
+    .nav-item-sub-x > ul {
+      background-color: map-get($theme-danger, "background");
+      color: map-get($theme-danger, "text");
+    }
+    & .nav-icon::before {
+      background-color: map-get($theme-danger, "text");
+      box-shadow: 0px 0.25em 0px 0px map-get($theme-danger, "text"),
+        0px 0.5em 0px 0px map-get($theme-danger, "text");
+    }
+    & ul.nav-main.vm {
+      background-color: map-get($theme-danger, "background");
+    }
   }
 
   & .brand {
@@ -33,7 +215,6 @@
       font-size: 14px;
       padding: 15px;
       text-decoration: none;
-      color: $gray-dark;
       white-space: nowrap;
       cursor: pointer;
     }
@@ -42,7 +223,7 @@
   & > .nav-main {
     margin-right: 20px;
     align-items: center;
-    background-color: $white;
+
     & > li {
       float: left;
     }
@@ -52,7 +233,6 @@
   .nav-item-sub-x {
     & > ul {
       display: none;
-      background-color: $white;
     }
     &:hover {
       & > ul {
@@ -82,8 +262,6 @@
     right: 20px;
     width: 20px;
     height: 0.15em;
-    background: $gray-dark;
-    box-shadow: 0 0.25em 0 0 $gray-dark, 0 0.5em 0 0 $gray-dark;
   }
 }
 

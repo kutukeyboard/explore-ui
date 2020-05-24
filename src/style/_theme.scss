@@ -35,6 +35,14 @@ $theme-default: (
   "border": lighten($gray-dark, 25),
 );
 
+$theme-dark: (
+  "background": $dark,
+  "text": lighten($gray, 20),
+  "link": $blue,
+  "link-hover": $teal,
+  "border": lighten($dark, 25),
+);
+
 $theme-primary: (
   "background": $primary,
   "text": $white,

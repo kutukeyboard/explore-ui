@@ -2,6 +2,9 @@
   border: solid 1px map-get($theme, "border");
   background-color: map-get($theme, "background");
   color: map-get($theme, "text");
+  .btn:hover {
+    background-color: lighten(map-get($theme, "background"), 20);
+  }
 }
 
 .btn {
@@ -12,6 +15,9 @@
   cursor: pointer;
 
   @include buttonTheme($theme-default);
+  &.dark {
+    @include buttonTheme($theme-dark);
+  }
   &.primary {
     @include buttonTheme($theme-primary);
   }

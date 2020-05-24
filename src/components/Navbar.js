@@ -2,7 +2,7 @@ import React from "react";
 
 const Nanvbar = (props) => {
   let myStyle = {};
-
+  let myId = [];
   const handleNavClick = () => {
     const cls = document.getElementById("nav-main").className;
     if (cls == "nav-main") {
@@ -14,6 +14,14 @@ const Nanvbar = (props) => {
 
   const getClass = () => {
     let myClass = "nav";
+    let myTheme = "default";
+
+    if (props.theme) {
+      myClass += " " + props.theme;
+    } else {
+      myClass += " " + myTheme;
+    }
+
     if (props.shadow) {
       myClass += " shadow";
     }
@@ -22,12 +30,6 @@ const Nanvbar = (props) => {
       myClass += " bordered";
     }
 
-    // if (props.justifyContent) {
-    //   myStyle["--justifyContent"] = props.justifyContent;
-    //   myClass += " " + props.justifyContent;
-    // } else {
-    //   myStyle["--justifyContent"] = "flex-start";
-    // }
     if (props.className) {
       return myClass + " " + props.className;
     } else {
@@ -55,17 +57,16 @@ const Nanvbar = (props) => {
           key={index}
         >
           <div
-            id={depth * index}
             className="navLink"
             onClick={(e) => {
+              e.preventDefault();
               if (window.innerWidth < 600) {
-                var selected = document.getElementById(depth * index);
-                if (selected.className == "navLink") {
-                  selected.className = "navLink vm";
-                  selected.nextSibling.style = "display:block";
+                if (e.target.className == "navLink") {
+                  e.target.className = "navLink vm";
+                  e.target.nextSibling.style = "display:block";
                 } else {
-                  selected.className = "navLink";
-                  selected.nextSibling.style = "display:none";
+                  e.target.className = "navLink";
+                  e.target.nextSibling.style = "display:none";
                 }
               }
             }}
