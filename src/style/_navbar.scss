@@ -16,7 +16,10 @@
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
-
+  z-index: 99;
+  position: sticky;
+  top: 0px;
+  width: 100%;
   &.default {
     &.bordered {
       @include navTheme($theme: $theme-default, $border: true);
@@ -266,9 +269,49 @@
 }
 
 @media only screen and (min-width: 720px) {
-  li:hover & > * {
-    color: $blue;
+  .nav {
+    &.default {
+      & li:hover {
+        color: map-get($theme-default, "link-hover");
+      }
+    }
+    &.dark {
+      & li:hover {
+        color: map-get($theme-dark, "link-hover");
+      }
+    }
+    &.primary {
+      & li:hover {
+        color: map-get($theme-primary, "link-hover");
+      }
+    }
+    &.secondary {
+      & li:hover {
+        color: map-get($theme-secondary, "link-hover");
+      }
+    }
+    &.success {
+      & li:hover {
+        color: map-get($theme-success, "link-hover");
+      }
+    }
+    &.info {
+      & li:hover {
+        color: map-get($theme-info, "link-hover");
+      }
+    }
+    &.warning {
+      & li:hover {
+        color: map-get($theme-warning, "link-hover");
+      }
+    }
+    &.danger {
+      & li:hover {
+        color: map-get($theme-danger, "link-hover");
+      }
+    }
   }
+
   .nav-item-sub:hover {
     & > ul {
       margin-left: -15px;

@@ -83,6 +83,10 @@ const Nanvbar = (props) => {
     }
   };
 
+  if (props.style) {
+    myStyle = { ...myStyle, ...props.style };
+  }
+
   return (
     <div className={getClass()} style={myStyle}>
       <div className="brand">

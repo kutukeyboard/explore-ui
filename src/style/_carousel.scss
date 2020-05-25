@@ -1,0 +1,125 @@
+.carousel {
+  width: 100%;
+  position: relative;
+
+  &.default {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-default, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-default, "background");
+    }
+  }
+
+  &.dark {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-dark, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-dark, "background");
+    }
+  }
+
+  &.primary {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-primary, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-primary, "background");
+    }
+  }
+
+  &.success {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-success, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-success, "background");
+    }
+  }
+
+  &.info {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-info, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-info, "background");
+    }
+  }
+
+  &.warning {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-warning, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-warning, "background");
+    }
+  }
+
+  &.danger {
+    & .imageContainer .arrow,
+    .bullets .dot {
+      color: map-get($theme-danger, "background");
+    }
+    & .bullets .dot.active {
+      background-color: map-get($theme-danger, "background");
+    }
+  }
+
+  & .imageContainer {
+    display: grid;
+
+    grid-template-columns: 50px auto 50px;
+    justify-content: space-between;
+    & > img {
+      max-width: 100%;
+    }
+    & .arrow {
+      width: 2vh;
+      height: 2vh;
+      border-width: 4px 4px 0 0;
+      border-style: solid;
+      opacity: 0.3;
+      margin: auto;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+      &.right {
+        transform: rotate(45deg);
+      }
+
+      &.left {
+        transform: rotate(-135deg);
+      }
+    }
+  }
+  & .bullets {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 10px;
+    opacity: 0.3;
+    &:hover {
+      opacity: 1;
+    }
+    & .dot {
+      height: 5px;
+      width: 5px;
+      margin: 2px;
+      background-color: transparent;
+      border-radius: 50%;
+      border: solid 1px;
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}
