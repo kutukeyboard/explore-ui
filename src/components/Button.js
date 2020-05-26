@@ -29,9 +29,9 @@ const Button = (props) => {
   }
 
   return (
-    <div className={getClass()} onClick={handleClick} style={myStyle}>
+    <button className={getClass()} onClick={handleClick} style={myStyle}>
       <div>{props.children}</div>
-    </div>
+    </button>
   );
 };
 

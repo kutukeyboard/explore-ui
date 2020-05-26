@@ -2,39 +2,57 @@
   border: solid 1px map-get($theme, "border");
   background-color: map-get($theme, "background");
   color: map-get($theme, "text");
-  .btn:hover {
-    background-color: lighten(map-get($theme, "background"), 20);
-  }
 }
 
 .btn {
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
-  margin: 5px;
+  // margin: 5px;
   display: inline-block;
   cursor: pointer;
 
   @include buttonTheme($theme-default);
   &.dark {
     @include buttonTheme($theme-dark);
+    &:hover {
+      background-color: lighten(map-get($theme-dark, "background"), 20);
+    }
   }
   &.primary {
     @include buttonTheme($theme-primary);
+    &:hover {
+      background-color: lighten(map-get($theme-primary, "background"), 20);
+    }
   }
   &.secondary {
     @include buttonTheme($theme-secondary);
+    &:hover {
+      background-color: lighten(map-get($theme-secondary, "background"), 20);
+    }
   }
   &.success {
     @include buttonTheme($theme-success);
+    &:hover {
+      background-color: lighten(map-get($theme-success, "background"), 20);
+    }
   }
   &.info {
     @include buttonTheme($theme-info);
+    &:hover {
+      background-color: lighten(map-get($theme-info, "background"), 20);
+    }
   }
   &.warning {
     @include buttonTheme($theme-warning);
+    &:hover {
+      background-color: lighten(map-get($theme-warning, "background"), 20);
+    }
   }
   &.danger {
     @include buttonTheme($theme-danger);
+    &:hover {
+      background-color: lighten(map-get($theme-danger, "background"), 20);
+    }
   }
   &.small * {
     font-size: map-get($font-size, "small");
