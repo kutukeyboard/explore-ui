@@ -1,5 +1,6 @@
 .card {
   background-color: $white;
+  margin: 10px;
   & > img {
     width: 100%;
   }
@@ -58,7 +59,7 @@
   }
 
   &-body {
-    padding: 0 15px;
+    padding: 15px;
   }
   & .title {
     display: block;

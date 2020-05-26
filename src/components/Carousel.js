@@ -84,31 +84,16 @@ const Carousel = (props) => {
   }
 
   return (
-    <div
-      className={getClass()}
-      style={myStyle}
-      onMouseOver={togglePlay}
-      onMouseLeave={togglePlay}
-    >
-      <div className="imageContainer">
-        <i className="arrow left" onClick={() => handleArrowClick("left")}></i>
-        {props.data && <img src={props.data[activeImage].image} />}
-        <i
-          className="arrow right"
-          onClick={() => handleArrowClick("right")}
-        ></i>
-      </div>
+    <div className={getClass()} style={myStyle} onMouseOver={togglePlay} onMouseLeave={togglePlay}>
+    
+      <i className="arrow left" onClick={() => handleArrowClick("left")}></i>
+      {props.data && <img src={props.data[activeImage].image} />}
+
+      <i className="arrow right" onClick={() => handleArrowClick("right")}></i>
       <div className="bullets">
         {props.data &&
           props.data.map((r, i) => {
-            return (
-              <span
-                id={i}
-                className="dot"
-                key={i}
-                onClick={() => setActiveImage(i)}
-              ></span>
-            );
+            return <span id={i} className="dot" key={i} onClick={() => setActiveImage(i)}></span>;
           })}
       </div>
     </div>

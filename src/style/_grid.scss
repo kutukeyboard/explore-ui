@@ -1,5 +1,6 @@
 @mixin gridBase($gap: 0) {
   display: grid;
+  overflow-x: hidden;
   align-items: stretch;
   @if $gap > 0 {
     gap: $gap;

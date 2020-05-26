@@ -14,7 +14,7 @@ const Grid = (props) => {
   if (props.minWidth) {
     myStyle["--colWidth"] = props.minWidth;
   } else {
-    myStyle["--colWidth"] = "300px";
+    myStyle["--colWidth"] = "200px";
   }
 
   if (props.gap && props.gap > 0) {

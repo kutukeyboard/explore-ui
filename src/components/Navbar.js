@@ -3,7 +3,9 @@ import React from "react";
 const Nanvbar = (props) => {
   let myStyle = {};
   let myId = [];
+
   const handleNavClick = () => {
+    console.log("clicked");
     const cls = document.getElementById("nav-main").className;
     if (cls == "nav-main") {
       document.getElementById("nav-main").className = "nav-main vm";
@@ -52,10 +54,7 @@ const Nanvbar = (props) => {
       );
     } else {
       return (
-        <li
-          className={depth > 1 ? "nav-item-sub-x" : "nav-item-sub"}
-          key={index}
-        >
+        <li className={depth > 1 ? "nav-item-sub-x" : "nav-item-sub"} key={index}>
           <div
             className="navLink"
             onClick={(e) => {

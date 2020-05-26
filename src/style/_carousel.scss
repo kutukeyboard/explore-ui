@@ -1,7 +1,7 @@
 .carousel {
   width: 100%;
   position: relative;
-
+  text-align: center;
   &.default {
     & .imageContainer .arrow,
     .bullets .dot {
@@ -71,37 +71,36 @@
       background-color: map-get($theme-danger, "background");
     }
   }
+  & > img {
+    max-width: 100%;
+  }
 
-  & .imageContainer {
-    display: grid;
+  & .arrow {
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    width: 2vh;
+    height: 2vh;
+    border-width: 4px 4px 0 0;
+    border-style: solid;
+    opacity: 0.3;
+    margin: auto;
+    cursor: pointer;
 
-    grid-template-columns: 50px auto 50px;
-    justify-content: space-between;
-    & > img {
-      max-width: 100%;
+    &:hover {
+      opacity: 1;
     }
-    & .arrow {
-      width: 2vh;
-      height: 2vh;
-      border-width: 4px 4px 0 0;
-      border-style: solid;
-      opacity: 0.3;
-      margin: auto;
-      overflow: hidden;
-      cursor: pointer;
+    &.right {
+      transform: rotate(45deg);
+      right: 50px;
+    }
 
-      &:hover {
-        opacity: 1;
-      }
-      &.right {
-        transform: rotate(45deg);
-      }
-
-      &.left {
-        transform: rotate(-135deg);
-      }
+    &.left {
+      transform: rotate(-135deg);
+      left: 50px;
     }
   }
+
   & .bullets {
     position: absolute;
     text-align: center;
