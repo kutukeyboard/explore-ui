@@ -1,6 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
 
+const ActionButton = (props) => {
+  let myStyle = {};
+
+  const handleClick = () => {
+    let result = {};
+    const elements = document.getElementsByClassName("exInput");
+    [...elements].forEach((item) => {
+      if (props.type != "reset") {
+        result[item.name] = item.value;
+      }
+      item.value = "";
+    });
+    props.onSubmit(result);
+  };
+
+  if (props.style) {
+    myStyle = { ...myStyle, ...props.style };
+  }
+
+  return (
+    <Button theme={props.theme} style={myStyle} onClick={handleClick}>
+      {props.children}
+    </Button>
+  );
+};
+
 const Input = (props) => {
   const [values, setValues] = useState();
   const [message, setMessage] = useState("");
@@ -78,30 +104,9 @@ const Input = (props) => {
 };
 
 const Form = (props) => {
-  const handleFormSubmit = () => {
-    let result = {};
-    const elements = document.getElementsByClassName("exInput");
-    [...elements].forEach((item) => {
-      result[item.name] = item.value;
-      item.value = "";
-    });
-    props.onSubmit(result);
-  };
-
-  return (
-    <div className="exForm">
-      {props.children}
-      <Button
-        theme="primary"
-        className="exFormButton"
-        onClick={handleFormSubmit}
-      >
-        Submit
-      </Button>
-    </div>
-  );
+  return <div className="exForm">{props.children}</div>;
 };
 
 Form.Input = Input;
-
+Form.ActionButton = ActionButton;
 export default Form;
