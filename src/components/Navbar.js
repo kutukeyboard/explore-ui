@@ -5,7 +5,7 @@ const Nanvbar = (props) => {
   let myId = [];
 
   const handleNavClick = () => {
-    console.log("clicked");
+    
     const cls = document.getElementById("nav-main").className;
     if (cls == "nav-main") {
       document.getElementById("nav-main").className = "nav-main vm";
