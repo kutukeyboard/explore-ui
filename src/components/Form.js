@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import Button from "./Button";
+
+const FormContext = createContext({});
 
 const ActionButton = (props) => {
   let myStyle = {};
+  const [formValue] = useContext(FormContext);
 
   const handleClick = () => {
-    let result = {};
-    const elements = document.getElementsByClassName("exInput");
-    [...elements].forEach((item) => {
-      if (props.type != "reset") {
-        result[item.name] = item.value;
-      }
-      item.value = "";
-    });
-    props.onSubmit(result);
+    if (props.type != "reset") {
+      props.onSubmit(formValue);
+    }
+    const element = document.getElementsByClassName("exInput");
+    [...element].forEach((item) => (item.value = ""));
   };
 
   if (props.style) {
@@ -28,7 +27,8 @@ const ActionButton = (props) => {
 };
 
 const Input = (props) => {
-  const [values, setValues] = useState();
+  const [formValue, setFormValue] = useContext(FormContext);
+
   const [message, setMessage] = useState("");
   let myType = "text";
 
@@ -36,7 +36,8 @@ const Input = (props) => {
     e.preventDefault();
     setMessage("");
     e.target.className = "exInput";
-    setValues(e.target.value);
+
+    setFormValue({ ...formValue, [props.name]: e.target.value });
     if (props.required && e.target.value.length == 0) {
       setMessage(props.name + " is required.");
       e.target.className = "exInput err";
@@ -91,7 +92,6 @@ const Input = (props) => {
             className="exInput"
             name={props.name}
             type={myType}
-            value={values}
             onChange={handleInputChange}
           />
           <label className="requiredMark">{props.required ? "*" : ""}</label>
@@ -103,10 +103,78 @@ const Input = (props) => {
   );
 };
 
+const Select = (props) => {
+  const [formValue, setFormValue] = useContext(FormContext);
+
+  const [message, setMessage] = useState("");
+  let myType = "text";
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setMessage("");
+    let result;
+
+    e.target.className = "exInput";
+
+    if (props.multiple) {
+      const arrValue = Array.from(
+        e.target.selectedOptions,
+        (item) => item.value
+      );
+      setFormValue({ ...formValue, [props.name]: arrValue });
+    } else {
+      setFormValue({ ...formValue, [props.name]: e.target.value });
+    }
+
+    if (props.required && e.target.value.length == 0) {
+      setMessage(props.name + " is required.");
+      e.target.className = "exInput err";
+      return;
+    }
+  };
+
+  return (
+    <div className="exInputContainer">
+      {props.label && <label className="exInput-label">{props.label}</label>}
+
+      <div className="exInputHolder">
+        <div className="exMarkerHolder">
+          <select
+            className="exInput"
+            name={props.name}
+            type={myType}
+            multiple={props.multiple ? true : false}
+            onChange={handleInputChange}
+          >
+            {props.option &&
+              props.option.map((r, i) => {
+                return (
+                  <option defaultValue={r.default} value={r.id} key={i}>
+                    {r.option}
+                  </option>
+                );
+              })}
+          </select>
+          <label className="requiredMark">{props.required ? "*" : ""}</label>
+        </div>
+
+        <label className="exErrorLabel">{message}</label>
+      </div>
+    </div>
+  );
+};
+
 const Form = (props) => {
-  return <div className="exForm">{props.children}</div>;
+  const [formValue, setFormValue] = useState({});
+
+  return (
+    <FormContext.Provider value={[formValue, setFormValue]}>
+      <div className="exForm">{props.children}</div>
+    </FormContext.Provider>
+  );
 };
 
 Form.Input = Input;
+Form.Select = Select;
 Form.ActionButton = ActionButton;
 export default Form;
