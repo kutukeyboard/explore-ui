@@ -58,15 +58,19 @@ const Input = (props) => {
   return (
     <div className="exInputContainer">
       {props.label && <label className="exInput-label">{props.label}</label>}
-      <label className="requiredMark">{props.required ? "*" : ""}</label>
+
       <div className="exInputHolder">
-        <input
-          className="exInput"
-          name={props.name}
-          type={myType}
-          value={values}
-          onChange={handleInputChange}
-        />
+        <div className="exMarkerHolder">
+          <input
+            className="exInput"
+            name={props.name}
+            type={myType}
+            value={values}
+            onChange={handleInputChange}
+          />
+          <label className="requiredMark">{props.required ? "*" : ""}</label>
+        </div>
+
         <label className="exErrorLabel">{message}</label>
       </div>
     </div>
@@ -78,8 +82,8 @@ const Form = (props) => {
     let result = {};
     const elements = document.getElementsByClassName("exInput");
     [...elements].forEach((item) => {
-      // console.log(item.name + " : " + item.value);
       result[item.name] = item.value;
+      item.value = "";
     });
     props.onSubmit(result);
   };
