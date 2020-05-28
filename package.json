@@ -4,6 +4,7 @@
   "description": "React UI Library",
   "main": "./dist/index.js",
   "scripts": {
+    "svgr": "svgr -d src/icons/ assets/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
@@ -44,5 +45,9 @@
   "peerDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^5.4.0",
+    "react-svg-loader": "^3.0.3"
   }
 }

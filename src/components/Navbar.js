@@ -1,11 +1,12 @@
 import React from "react";
 
+import Bar from "../icons/Bar.svg";
+
 const Nanvbar = (props) => {
   let myStyle = {};
   let myId = [];
 
   const handleNavClick = () => {
-    
     const cls = document.getElementById("nav-main").className;
     if (cls == "nav-main") {
       document.getElementById("nav-main").className = "nav-main vm";
@@ -22,6 +23,7 @@ const Nanvbar = (props) => {
       myClass += " " + props.theme;
     } else {
       myClass += " " + myTheme;
+      // myStyle["--theme"] = props.theme;
     }
 
     if (props.shadow) {
@@ -54,7 +56,10 @@ const Nanvbar = (props) => {
       );
     } else {
       return (
-        <li className={depth > 1 ? "nav-item-sub-x" : "nav-item-sub"} key={index}>
+        <li
+          className={depth > 1 ? "nav-item-sub-x" : "nav-item-sub"}
+          key={index}
+        >
           <div
             className="navLink"
             onClick={(e) => {
@@ -99,8 +104,7 @@ const Nanvbar = (props) => {
             return getSubMenu(r, i, 1);
           })}
       </ul>
-
-      <div className="nav-icon" onClick={handleNavClick} />
+      <Bar className="bar-icon" onClick={handleNavClick} />
     </div>
   );
 };

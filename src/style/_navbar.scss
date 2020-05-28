@@ -1,13 +1,26 @@
 @import "./theme";
 
-@mixin navTheme($theme, $border: false, $shadow: false) {
+@mixin navTheme($theme) {
   background-color: map-get($theme, "background");
   color: map-get($theme, "text");
+  .bar-icon > path {
+    fill: map-get($theme, "text");
+  }
 
-  @if $border {
+  .nav-item-sub > ul,
+  .nav-item-sub-x > ul {
+    background-color: map-get($theme, "background");
+    color: map-get($theme, "text");
+  }
+
+  ul.nav-main.vm {
+    background-color: map-get($theme, "background");
+  }
+
+  & > .bordered {
     border: solid 1px map-get($theme, "border");
   }
-  @if $shadow {
+  & > .shadow {
     box-shadow: 1px 1px 5px map-get($theme, "border");
   }
 }
@@ -18,182 +31,34 @@
   justify-content: space-between;
   z-index: 99;
   position: sticky;
+  height: 60px;
   top: 0px;
   width: 100%;
+
   &.default {
-    &.bordered {
-      @include navTheme($theme: $theme-default, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-default, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-default, "background");
-      color: map-get($theme-default, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-default, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-default, "text"),
-        0px 0.5em 0px 0px map-get($theme-default, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-default, "background");
-    }
+    @include navTheme($theme-default);
   }
-
   &.dark {
-    &.bordered {
-      @include navTheme($theme: $theme-dark, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-dark, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-dark, "background");
-      color: map-get($theme-dark, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-dark, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-dark, "text"),
-        0px 0.5em 0px 0px map-get($theme-dark, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-dark, "background");
-    }
+    @include navTheme($theme-dark);
   }
-
   &.primary {
-    &.bordered {
-      @include navTheme($theme: $theme-primary, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-primary, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-primary, "background");
-      color: map-get($theme-primary, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-primary, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-primary, "text"),
-        0px 0.5em 0px 0px map-get($theme-primary, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-primary, "background");
-    }
+    @include navTheme($theme-primary);
   }
 
   &.secondary {
-    &.bordered {
-      @include navTheme($theme: $theme-secondary, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-secondary, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-secondary, "background");
-      color: map-get($theme-secondary, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-secondary, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-secondary, "text"),
-        0px 0.5em 0px 0px map-get($theme-secondary, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-secondary, "background");
-    }
+    @include navTheme($theme-secondary);
   }
-
   &.success {
-    &.bordered {
-      @include navTheme($theme: $theme-success, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-success, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-success, "background");
-      color: map-get($theme-success, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-success, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-success, "text"),
-        0px 0.5em 0px 0px map-get($theme-success, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-success, "background");
-    }
+    @include navTheme($theme-success);
   }
-
   &.info {
-    &.bordered {
-      @include navTheme($theme: $theme-info, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-info, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-info, "background");
-      color: map-get($theme-info, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-info, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-info, "text"),
-        0px 0.5em 0px 0px map-get($theme-info, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-info, "background");
-    }
+    @include navTheme($theme-info);
   }
-
   &.warning {
-    &.bordered {
-      @include navTheme($theme: $theme-warning, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-warning, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-warning, "background");
-      color: map-get($theme-warning, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-warning, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-warning, "text"),
-        0px 0.5em 0px 0px map-get($theme-warning, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-warning, "background");
-    }
+    @include navTheme($theme-warning);
   }
-
   &.danger {
-    &.bordered {
-      @include navTheme($theme: $theme-danger, $border: true);
-    }
-    &.shadow {
-      @include navTheme($theme: $theme-danger, $shadow: true);
-    }
-    & .nav-item-sub > ul,
-    .nav-item-sub-x > ul {
-      background-color: map-get($theme-danger, "background");
-      color: map-get($theme-danger, "text");
-    }
-    & .nav-icon::before {
-      background-color: map-get($theme-danger, "text");
-      box-shadow: 0px 0.25em 0px 0px map-get($theme-danger, "text"),
-        0px 0.5em 0px 0px map-get($theme-danger, "text");
-    }
-    & ul.nav-main.vm {
-      background-color: map-get($theme-danger, "background");
-    }
+    @include navTheme($theme-danger);
   }
 
   & .brand {
@@ -211,14 +76,14 @@
 
   & ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     min-width: max-content;
+    align-items: center;
     & > li {
-      font-size: 14px;
       padding: 15px;
+
       text-decoration: none;
-      white-space: nowrap;
       cursor: pointer;
     }
   }
@@ -253,6 +118,13 @@
       border-right: 5px solid transparent;
     }
   }
+}
+
+.bar-icon {
+  display: none;
+  position: relative;
+  right: 20px;
+  margin: auto;
 }
 
 .nav-icon {
@@ -357,12 +229,50 @@
         }
       }
     }
-    & .navLink.vm {
-      color: $blue;
+    &.default {
+      & .navLink.vm {
+        color: map-get($theme-default, "link-hover");
+      }
+    }
+    &.dark {
+      & .navLink.vm {
+        color: map-get($theme-dark, "link-hover");
+      }
+    }
+    &.primary {
+      & .navLink.vm {
+        color: map-get($theme-primary, "link-hover");
+      }
+    }
+    &.secondary {
+      & .navLink.vm {
+        color: map-get($theme-secondary, "link-hover");
+      }
+    }
+    &.success {
+      & .navLink.vm {
+        color: map-get($theme-success, "link-hover");
+      }
+    }
+    &.info {
+      & .navLink.vm {
+        color: map-get($theme-info, "link-hover");
+      }
+    }
+    &.warning {
+      & .navLink.vm {
+        color: map-get($theme-warning, "link-hover");
+      }
+    }
+    &.danger {
+      & .navLink.vm {
+        color: map-get($theme-danger, "link-hover");
+      }
     }
   }
 
-  .nav-icon {
+  .nav-icon,
+  .bar-icon {
     display: block;
   }
 }

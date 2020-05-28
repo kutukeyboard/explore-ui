@@ -18,6 +18,7 @@
       }
       & .exInput {
         padding: 5px;
+        border: solid 1px $gray;
         &.err {
           background-color: $danger;
           color: $white;
