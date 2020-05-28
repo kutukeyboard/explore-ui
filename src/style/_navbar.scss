@@ -44,7 +44,6 @@
   &.primary {
     @include navTheme($theme-primary);
   }
-
   &.secondary {
     @include navTheme($theme-secondary);
   }

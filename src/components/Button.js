@@ -14,9 +14,15 @@ const Button = (props) => {
     if (props.size) {
       myClass += " " + props.size;
     }
-    if (props.theme) {
-      myClass += " " + props.theme;
+
+    if (props.disabled) {
+      myClass += " disabled";
+    } else {
+      if (props.theme) {
+        myClass += " " + props.theme;
+      }
     }
+
     if (props.className) {
       return myClass + " " + props.className;
     } else {
@@ -29,7 +35,12 @@ const Button = (props) => {
   }
 
   return (
-    <button className={getClass()} onClick={handleClick} style={myStyle}>
+    <button
+      disabled={props.disabled}
+      className={getClass()}
+      onClick={handleClick}
+      style={myStyle}
+    >
       <div>{props.children}</div>
     </button>
   );

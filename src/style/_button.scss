@@ -10,6 +10,12 @@
   // margin: 5px;
   display: inline-block;
   cursor: pointer;
+  outline: none;
+  &.disabled {
+    background-color: $gray;
+    color: $white;
+    cursor: not-allowed;
+  }
 
   @include buttonTheme($theme-default);
   &.dark {

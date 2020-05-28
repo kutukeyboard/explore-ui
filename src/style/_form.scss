@@ -18,9 +18,15 @@
       }
       & .exInput {
         padding: 5px;
-        border: solid 1px $gray;
+        border: solid 0.5px lighten($gray, 20);
+        outline: none;
+        &:focus {
+          border: solid 0.5px $focus;
+          box-shadow: 1px 1px 3px $focus;
+        }
         &.err {
           background-color: $danger;
+
           color: $white;
         }
       }
