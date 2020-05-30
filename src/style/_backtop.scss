@@ -1,0 +1,25 @@
+.exArrowWrap {
+  position: fixed;
+  z-index: 9;
+
+  right: 40px;
+  bottom: 20px;
+
+  width: 35x;
+  height: 35px;
+
+  padding: 10px;
+  border-radius: 50%;
+  background-color: lighten($gray, 40);
+  opacity: 0.5;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.exArrow {
+  & > path {
+    fill: $primary;
+  }
+}

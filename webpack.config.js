@@ -4,7 +4,7 @@ module.exports = {
   mode: "production",
   entry: "./src/index.js",
   output: {
-    path: path.resolve("dist"),
+    path: path.resolve("./"),
     filename: "index.js",
     libraryTarget: "commonjs2",
   },
@@ -42,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: ["@svgr/webpack"],
       },
     ],
   },

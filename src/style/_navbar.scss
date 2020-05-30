@@ -185,7 +185,7 @@
 
   .nav-item-sub:hover {
     & > ul {
-      margin-left: -15px;
+      margin-left: 0px;
       top: 48px;
       border: solid 0.5px $border-shadow;
       border-radius: 5px;
