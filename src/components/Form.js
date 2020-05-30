@@ -30,7 +30,6 @@ const ActionButton = (props) => {
       } else {
         item.value = "";
         item.className = "exInput";
-        // setFormError(!formError);
       }
     });
 
@@ -41,7 +40,6 @@ const ActionButton = (props) => {
       [...element].forEach((item) => {
         item.value = "";
         item.className = "exInput";
-        // setFormError(!formError);
       });
     }
   };

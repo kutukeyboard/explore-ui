@@ -30,6 +30,9 @@
           border: solid 0.5px lighten($danger, 20);
           // color: $white;
         }
+        select {
+          border: solid 0.5px lighten($gray, 20);
+        }
       }
     }
     & .exHorizontalHolder * {
