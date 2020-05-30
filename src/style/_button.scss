@@ -2,6 +2,18 @@
   border: solid 1px map-get($theme, "border");
   background-color: map-get($theme, "background");
   color: map-get($theme, "text");
+
+  &:hover {
+    background-color: lighten(map-get($theme, "background"), 20);
+  }
+  &:active {
+    background-color: map-get($theme, "background");
+  }
+  &.disabled {
+    background-color: $gray;
+    color: $white;
+    cursor: not-allowed;
+  }
 }
 
 .btn {
@@ -11,54 +23,29 @@
   display: inline-block;
   cursor: pointer;
   outline: none;
-  &.disabled {
-    background-color: $gray;
-    color: $white;
-    cursor: not-allowed;
-  }
 
   @include buttonTheme($theme-default);
+
   &.dark {
     @include buttonTheme($theme-dark);
-    &:hover {
-      background-color: lighten(map-get($theme-dark, "background"), 20);
-    }
   }
   &.primary {
     @include buttonTheme($theme-primary);
-    &:hover {
-      background-color: lighten(map-get($theme-primary, "background"), 20);
-    }
   }
   &.secondary {
     @include buttonTheme($theme-secondary);
-    &:hover {
-      background-color: lighten(map-get($theme-secondary, "background"), 20);
-    }
   }
   &.success {
     @include buttonTheme($theme-success);
-    &:hover {
-      background-color: lighten(map-get($theme-success, "background"), 20);
-    }
   }
   &.info {
     @include buttonTheme($theme-info);
-    &:hover {
-      background-color: lighten(map-get($theme-info, "background"), 20);
-    }
   }
   &.warning {
     @include buttonTheme($theme-warning);
-    &:hover {
-      background-color: lighten(map-get($theme-warning, "background"), 20);
-    }
   }
   &.danger {
     @include buttonTheme($theme-danger);
-    &:hover {
-      background-color: lighten(map-get($theme-danger, "background"), 20);
-    }
   }
   &.small * {
     font-size: map-get($font-size, "small");

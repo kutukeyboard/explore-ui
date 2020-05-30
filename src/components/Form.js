@@ -1,35 +1,50 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+  useRef,
+} from "react";
 import Button from "./Button";
 
 const FormContext = createContext({});
-const ErrorContext = createContext({});
+const ErrorContext = createContext();
 
 const ActionButton = (props) => {
   let myStyle = {};
-  const [formValue] = useContext(FormContext);
+  const [formValue, setFormValue] = useContext(FormContext);
   const [formError, setFormError] = useContext(ErrorContext);
   const [disabled, setDisabled] = useState();
 
   const handleClick = () => {
-    if (props.type != "reset") {
-      props.onSubmit(formValue);
-    }
-    const element = document.getElementsByClassName("exInput");
-    [...element].forEach((item) => {
-      item.value = "";
-      item.className = "exInput";
-      setFormError(!formError);
-    });
-  };
+    let foundError = 0;
 
-  useEffect(() => {
-    const result = Object.values(formError).find((v) => v == true);
-    if (result == true && props.type != "reset") {
-      setDisabled(true);
-    } else {
-      setDisabled(false);
+    const element = document.getElementsByClassName("exInput");
+    let err = {};
+    [...element].forEach((item) => {
+      if (props.type != "reset") {
+        if (item.required && item.value == "") {
+          err = { ...err, [item.name]: "required" };
+          foundError += 1;
+        }
+      } else {
+        item.value = "";
+        item.className = "exInput";
+        // setFormError(!formError);
+      }
+    });
+
+    console.log("error found : " + foundError);
+    setFormError({ ...formError, ...err });
+    if (props.type != "reset" && foundError == 0) {
+      props.onSubmit(formValue);
+      [...element].forEach((item) => {
+        item.value = "";
+        item.className = "exInput";
+        // setFormError(!formError);
+      });
     }
-  }, [formError]);
+  };
 
   if (props.style) {
     myStyle = { ...myStyle, ...props.style };
@@ -51,17 +66,36 @@ const Input = (props) => {
   const [formValue, setFormValue] = useContext(FormContext);
   const [formError, setFormError] = useContext(ErrorContext);
 
+  const myInput = useRef(null);
   const [message, setMessage] = useState("");
+
   let myType = "text";
+
+  useEffect(() => {
+    formError[props.name] = false;
+  }, []);
+
+  useEffect(() => {
+    if (formError[props.name] != false) {
+      console.log(formError[props.name]);
+      setMessage(props.name + " is required.");
+      // // handleInputChange();
+      myInput.current.className = "exInput err";
+    }
+  }, [formError]);
 
   const handleInputChange = (e) => {
     e.preventDefault();
     setMessage("");
     e.target.className = "exInput";
 
-    setFormValue({ ...formValue, [props.name]: e.target.value });
+    setFormError({ ...formError, [props.name]: false });
+
     if (props.required && e.target.value.length == 0) {
-      setFormError({ ...formError, [props.name]: true });
+      setFormError({
+        ...formError,
+        [props.name]: props.name + " is required.",
+      });
       setMessage(props.name + " is required.");
       e.target.className = "exInput err";
       return;
@@ -103,6 +137,12 @@ const Input = (props) => {
         return;
       }
     }
+
+    if (props.type == "number") {
+      setFormValue({ ...formValue, [props.name]: parseFloat(e.target.value) });
+    } else {
+      setFormValue({ ...formValue, [props.name]: e.target.value });
+    }
   };
 
   if (props.type) {
@@ -118,15 +158,15 @@ const Input = (props) => {
           <input
             className="exInput"
             name={props.name}
+            ref={myInput}
             type={myType}
+            required={props.required}
             onChange={handleInputChange}
           />
           <label className="requiredMark">{props.required ? "*" : ""}</label>
         </div>
 
-        <label className="exErrorLabel">
-          {formError[props.name] == true ? message : ""}
-        </label>
+        <label className="exErrorLabel">{message != "" ? message : ""}</label>
       </div>
     </div>
   );
@@ -139,16 +179,22 @@ const Select = (props) => {
   const [message, setMessage] = useState("");
   let myType = "text";
 
+  useEffect(() => {
+    const option = Object.values(props.option).find((o) => o.default == true);
+    formValue[props.name] = option.value;
+  }, []);
+
   const handleInputChange = (e) => {
     e.preventDefault();
+    console.log("select changed");
     setMessage("");
     let result;
     e.target.className = "exInput";
+    setFormError({ ...formError, [props.name]: false });
 
     if (props.multiple) {
-      const arrValue = Array.from(
-        e.target.selectedOptions,
-        (item) => item.value
+      const arrValue = Array.from(e.target.selectedOptions, (item) =>
+        parseFloat(item.value)
       );
       setFormValue({ ...formValue, [props.name]: arrValue });
     } else {
@@ -173,14 +219,15 @@ const Select = (props) => {
             className="exInput"
             name={props.name}
             type={myType}
+            required={props.required}
             multiple={props.multiple ? true : false}
             onChange={handleInputChange}
           >
             {props.option &&
               props.option.map((r, i) => {
                 return (
-                  <option defaultValue={r.default} value={r.id} key={i}>
-                    {r.option}
+                  <option defaultChecked={r.default} value={r.value} key={i}>
+                    {r.label}
                   </option>
                 );
               })}
@@ -195,7 +242,49 @@ const Select = (props) => {
   );
 };
 
-const Radio = (props) => {};
+const Radio = (props) => {
+  const [formValue, setFormValue] = useContext(FormContext);
+  const [formError, setFormError] = useContext(ErrorContext);
+
+  const handleChange = (e) => {
+    setFormValue({ ...formValue, [props.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    const option = Object.values(props.data).find((o) => o.default == true);
+    formValue[props.name] = option.value;
+  }, []);
+
+  return (
+    <div className="exInputContainer">
+      {props.label && <label className="exInput-label">{props.label}</label>}
+
+      <div className="exInputHolder">
+        <div className="exHorizontalHolder">
+          {props.data &&
+            props.data.map((r, i) => {
+              return (
+                <label key={i}>
+                  <input
+                    className="exInput"
+                    type="radio"
+                    defaultChecked={r.default}
+                    name={props.name}
+                    value={r.value}
+                    onChange={handleChange}
+                  />
+                  {r.label}
+                </label>
+              );
+            })}
+        </div>
+        <label className="exErrorLabel">
+          {formError[props.name] == true ? message : ""}
+        </label>
+      </div>
+    </div>
+  );
+};
 
 const Form = (props) => {
   const [formValue, setFormValue] = useState({});
@@ -212,5 +301,6 @@ const Form = (props) => {
 
 Form.Input = Input;
 Form.Select = Select;
+Form.Radio = Radio;
 Form.ActionButton = ActionButton;
 export default Form;
