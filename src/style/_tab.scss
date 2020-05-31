@@ -1,0 +1,18 @@
+.exTab {
+  & > .exTabSwitch {
+    display: flex;
+    border-bottom: 1px solid #f0f0f0;
+    & > .exTabButton {
+      font-size: 16px;
+      margin: 5px 10px 0px 10px;
+      padding-bottom: 10px;
+      cursor: pointer;
+      &:first-child {
+        margin: 5px 10px 0px 0px;
+      }
+      &.active {
+        border-bottom: 2px solid $primary;
+      }
+    }
+  }
+}

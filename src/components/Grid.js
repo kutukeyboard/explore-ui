@@ -6,7 +6,7 @@ const Grid = (props) => {
   let myStyle = {};
 
   const getClass = () => {
-    props.type == "column" ? (myClass += " col") : (myClass += " row");
+    props.type == "row" ? (myClass += " row") : (myClass += " col");
 
     return myClass + " " + props.className;
   };

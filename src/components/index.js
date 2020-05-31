@@ -6,3 +6,4 @@ export { default as Button } from "./Button";
 export { default as Carousel } from "./Carousel";
 export { default as Form } from "./Form";
 export { default as BackTop } from "./BackTop";
+export { default as Tab } from "./Tab";
