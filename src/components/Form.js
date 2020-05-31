@@ -184,7 +184,6 @@ const Select = (props) => {
 
   const handleInputChange = (e) => {
     e.preventDefault();
-    console.log("select changed");
     setMessage("");
     let result;
     e.target.className = "exInput";
@@ -231,6 +230,61 @@ const Select = (props) => {
               })}
           </select>
           <label className="requiredMark">{props.required ? "*" : ""}</label>
+        </div>
+        <label className="exErrorLabel">
+          {formError[props.name] == true ? message : ""}
+        </label>
+      </div>
+    </div>
+  );
+};
+
+const Check = (props) => {
+  const [formValue, setFormValue] = useContext(FormContext);
+  const [formError, setFormError] = useContext(ErrorContext);
+
+  const handleChange = (e) => {
+    let obj = {};
+    if (e.target.checked) {
+      [formValue[props.name]].forEach((item) => {
+        obj = { ...obj, ...item };
+      });
+      obj = { ...obj, [e.target.name]: e.target.value };
+      setFormValue({ ...formValue, [props.name]: obj });
+    } else {
+      const arr = formValue[props.name];
+      delete arr[e.target.name];
+      setFormValue({ ...formValue, [props.name]: arr });
+    }
+  };
+
+  useEffect(() => {
+    const option = Object.values(props.data).find((o) => o.default == true);
+    formValue[props.name] = { [option.label]: option.value };
+  }, []);
+
+  return (
+    <div className="exInputContainer">
+      {props.label && <label className="exInput-label">{props.label}</label>}
+
+      <div className="exInputHolder">
+        <div className="exHorizontalHolder">
+          {props.data &&
+            props.data.map((r, i) => {
+              return (
+                <label key={i}>
+                  <input
+                    className="exInput"
+                    type="checkbox"
+                    defaultChecked={r.default}
+                    name={r.label}
+                    value={r.value}
+                    onChange={handleChange}
+                  />
+                  {r.label}
+                </label>
+              );
+            })}
         </div>
         <label className="exErrorLabel">
           {formError[props.name] == true ? message : ""}
@@ -299,6 +353,7 @@ const Form = (props) => {
 
 Form.Input = Input;
 Form.Select = Select;
+Form.Check = Check;
 Form.Radio = Radio;
 Form.ActionButton = ActionButton;
 export default Form;
