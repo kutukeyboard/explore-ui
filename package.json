@@ -1,5 +1,6 @@
 {
   "name": "explore-ui",
+  "sideEffects": false,
   "version": "1.0.4-4",
   "description": "React UI Library",
   "main": "index.js",
