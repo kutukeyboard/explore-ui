@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/style.scss";
 
 const Grid = (props) => {
   let myClass = "grid";

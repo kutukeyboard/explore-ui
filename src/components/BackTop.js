@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  createContext,
-  useContext,
-  useRef,
-} from "react";
+import React from "react";
 
 import Arrow from "../icons/arrow.svg";
 
