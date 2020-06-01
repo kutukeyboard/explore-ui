@@ -1,0 +1,69 @@
+@mixin modalTheme($theme) {
+  border: solid 1px map-get($theme, "border");
+  background-color: lighten(map-get($theme, "background"), 50);
+  // color: map-get($theme, "text");
+
+  .exModalHeader {
+    border-bottom: solid 1px lighten(map-get($theme, "border"), 20);
+  }
+}
+
+.exModalContainer {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.5);
+  & > .exModal {
+    @include modalTheme($theme-default);
+
+    &.dark {
+      @include modalTheme($theme-dark);
+    }
+    &.primary {
+      @include modalTheme($theme-primary);
+    }
+    &.secondary {
+      @include modalTheme($theme-secondary);
+    }
+    &.success {
+      @include modalTheme($theme-success);
+    }
+    &.info {
+      @include modalTheme($theme-info);
+    }
+    &.warning {
+      @include modalTheme($theme-warning);
+    }
+    &.danger {
+      @include modalTheme($theme-danger);
+    }
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 600px;
+    // border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 15px;
+
+    & > .exModalHeader {
+      display: grid;
+      grid-template-columns: auto 25px;
+      margin-bottom: 10px;
+      & > .exModalTitle {
+        font-size: 16px;
+      }
+      & > .exModalButton {
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        margin: auto;
+        padding: 0px;
+      }
+    }
+  }
+}

@@ -1,19 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Alert = (props) => {
-  const [active, setActive] = useState();
-
-  const handleClose = () => {
-    setActive(false);
-    if (props.onClose) {
-      props.onClose();
-    }
-  };
-
-  useEffect(() => {
-    setActive(true);
-  }, []);
-
   const getClass = () => {
     let myClass = "alert";
 
@@ -31,15 +18,11 @@ const Alert = (props) => {
   };
 
   return (
-    <div>
-      {active && (
-        <div className={getClass()}>
-          <div>{props.children}</div>
-          <div className="closeBtn" onClick={handleClose}>
-            X
-          </div>
-        </div>
-      )}
+    <div className={getClass()}>
+      <div>{props.children}</div>
+      <div className="closeBtn" onClick={() => props.onClose()}>
+        X
+      </div>
     </div>
   );
 };
