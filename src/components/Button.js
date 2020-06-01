@@ -8,6 +8,7 @@ const Button = (props) => {
       props.onClick();
     }
   };
+
   const getClass = () => {
     let myClass = "btn";
 
